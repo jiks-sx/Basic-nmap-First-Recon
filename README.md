@@ -72,6 +72,8 @@ Install VirtualBox or VMware Workstation/Player on your host machine (Windows, L
 
 <img width="1046" height="709" alt="Screenshot 2025-11-15 103057" src="https://github.com/user-attachments/assets/54076d8e-af40-4910-aefa-a32069945940" />
 
+>## ***ADMIN OR PASSWORD IS BOTH :- msfadmin*** <<<
+
 
 >***Same as Kali-Linux***
 
@@ -87,6 +89,8 @@ Install VirtualBox or VMware Workstation/Player on your host machine (Windows, L
 
 
 ![WhatsApp Image 2025-11-15 at 19 28 15_bd3d2651](https://github.com/user-attachments/assets/d65c5fad-2849-4b79-a874-61526f435494)
+
+>## ***Deafult Kali's Username or Password :- Kali***
 
 
 ># Metasploitable2 :
@@ -244,6 +248,87 @@ Your scan shows multiple SSL/TLS weaknesses:
 
 ![WhatsApp Image 2025-11-15 at 19 28 20_1e6fa8e1](https://github.com/user-attachments/assets/2e63846c-f558-4a99-903b-ca95b02e8299)
 
+>**Anonymous Diffie-Hellman Key Exchange – VULNERABLE**
+
+This allows an attacker to perform MITM (Man-in-the-Middle) attacks.
+
+Impact:
+
+Traffic can be intercepted and decrypted.
+
+
+---
+
+>**Logjam Attack – VULNERABLE (CVE-2015-4000)**
+
+Weak DH group used → attacker can break encryption.
+
+Impact:
+
+Session keys can be stolen.
+
+
+---
+
+>**POODLE Attack – SSLv3 (CVE-2014-3566)**
+
+Old SSL protocol vulnerable to padding-oracle attack.
+
+Impact:
+
+Cookies and session data can be stolen.
+
+
+---
+
+>>***. HTTP (80/tcp) – MULTIPLE VULNERABILITIES***
+
+Your target (Metasploitable II / Mutillidae) is intentionally vulnerable.
+
+
+---
+
+>a) Slowloris Attack – LIKELY VULNERABLE
+
+Slowloris holds connections open to exhaust server resources.
+
+Impact:
+
+Website can be taken down using DoS attack.
+
+
+---
+
+>b) DOM-Based XSS – Not Found
+
+Nmap could not find a DOM-based XSS in this scan.
+
+
+---
+
+>c) HTTP TRACE Enabled
+
+Server allows TRACE method → possible Cross-site tracing.
+
+
+---
+
+>d) SQL Injection – Enabled
+
+Nmap found many URLs vulnerable to SQL injection:
+
+Example:
+
+/index.php?page=home.php%27%20OR%20%271%27%3D%271
+
+Impact:
+
+Bypass login
+
+Dump database
+
+Gain admin access
+
 
 ![WhatsApp Image 2025-11-15 at 19 28 20_369a5531](https://github.com/user-attachments/assets/512d3381-3a55-4588-9c39-206d45b77da7)
 
@@ -257,5 +342,229 @@ Your scan shows multiple SSL/TLS weaknesses:
 ![WhatsApp Image 2025-11-15 at 19 28 20_a5232aec](https://github.com/user-attachments/assets/b57d491c-4ec1-41f4-a11c-2d8c64fdc710)
 
 
+>***Here are the most dangerous because they affect the entire server, not just a website.***
+
+>Major Issues in Result 
+
+⚠️ Category	Problem	Risk
+
+>>Open Ports	FTP, Telnet, SMB, VNC, MySQL exposed	------  Critical
+Weak
+
+>>SSL/TLS	Weak Diffie-Hellman Group (1024-bit)	------  High
+
+>>SSL POODLE (CVE-2014-3566)	SSL 3.0 padding attack	--------  High
+
+>>SSL CCS Injection (CVE-2014-0224)	MITM session hijack	Critical
+Old Services	Outdated Apache, OpenSSL	-------- High
 
 
+
+---
+
+>shows vulnerabilities that allow:
+
+>Remote code execution
+
+>Man-in-the-middle attacks
+
+>Decrypting SSL traffic
+
+>Hijacking secure sessions
+
+>Gaining system-level access
+
+# Vulnerability Scan Report
+
+>Target: ***192.168.145.129***
+>Scan Tool: ***Nmap (--script vuln)***
+>Report Type: System-Level Vulnerabilities 
+
+
+---
+
+Summary
+
+>A comprehensive Nmap vulnerability scan identified multiple critical security weaknesses on the target machine. These include outdated services, insecure configurations, exposed ports, and severe SSL/TLS vulnerabilities. If this system were exposed to any network, it could be compromised with minimal effort.
+
+
+---
+
+>***Open Ports and Services***
+
+| Port      | Service        | Risk |
+|-----------|----------------|------|
+| 21/tcp    | FTP            | 🔴 High |
+| 22/tcp    | SSH            | 🟡 Medium |
+| 23/tcp    | Telnet         | 🔴 High |
+| 25/tcp    | SMTP           | 🟡 Medium |
+| 53/tcp    | DNS (Domain)   | 🟡 Medium |
+| 80/tcp    | HTTP           | 🟢 Low |
+| 111/tcp   | RPCBind        | 🔴 High |
+| 139/tcp   | NetBIOS-SSN    | 🔴 High |
+| 445/tcp   | Microsoft-DS   | 🔴 High |
+| 512/tcp   | Exec           | 🔴 High |
+| 513/tcp   | Login          | 🔴 High |
+| 514/tcp   | Shell          | 🔴 High |
+| 3306/tcp  | MySQL          | 🟡 Medium |
+| 5432/tcp  | PostgreSQL     | 🟡 Medium |
+| 5900/tcp  | VNC            | 🔴 High |
+| 8009/tcp  | AJP13          | 🔴 High |
+| 8080/tcp  | HTTP-Alt       | 🟡 Medium |
+
+>Many services are outdated and exposed to the network, increasing the risk of remote exploitation.
+
+
+---
+
+>**SSL/TLS Vulnerabilities**
+
+Weak Diffie-Hellman Group
+
+State: Vulnerable
+
+Uses a 1024-bit DH group, which is insecure.
+
+Allows attackers to passively decrypt TLS traffic.
+
+
+
+---
+
+>**SSL POODLE (CVE-2014-3566)**
+
+State: Vulnerable
+
+Exploits SSL 3.0 padding behavior.
+
+Can lead to decryption of session cookies and sensitive data.
+
+
+
+---
+
+>**TLS/SSL CCS Injection (CVE-2014-0224)**
+
+State: Vulnerable (High Risk)
+
+Enables a man-in-the-middle to hijack encrypted connections.
+
+Can compromise login sessions and encrypted traffic.
+
+
+
+---
+
+Risk Level Overview
+
+Category	Risk Level
+
+System Exposure	Critical
+SSL/TLS Weaknesses	Critical
+Outdated Services	Critical
+Web Application Issues	Medium
+
+
+
+---
+
+# Remediation (Fixes)
+
+>***1. Secure Open Ports***
+
+Close unused ports immediately (Telnet, FTP, SMB, RPC, VNC).
+
+Replace insecure services:
+
+FTP → SFTP
+
+Telnet → SSH
+
+SMTP: enable TLS
+
+
+>Apply a firewall policy:
+
+Deny all inbound traffic by default
+Allow only required services (e.g., SSH)
+
+
+
+---
+
+>***2. Update Server Packages***
+
+Update Apache, OpenSSL, MySQL, PostgreSQL, and Samba to latest versions.
+
+Apply OS-level security patches.
+
+Remove unnecessary packages.
+
+
+
+---
+
+>***3. Fix TLS/SSL Vulnerabilities***
+
+Disable insecure protocols
+
+Disable SSL 2.0, SSL 3.0, and TLS 1.0.
+
+Allow only modern TLS versions:
+
+TLS 1.2
+
+TLS 1.3
+
+
+
+Configure strong cipher suites
+
+Disable weak ciphers (RC4, 3DES).
+
+Enable strong elliptic-curve ciphers.
+
+
+Use secure Diffie-Hellman parameters
+
+Generate a 2048-bit or 4096-bit DH group.
+
+Update server configuration.
+
+
+
+---
+
+>***4. Hardening Recommendations***
+
+Enforce strong passwords and SSH key authentication.
+
+Disable root login over SSH.
+
+Restrict database access to local connections.
+
+Configure Fail2ban or similar intrusion protection.
+
+Enable regular system and vulnerability scanning.
+
+
+
+---
+
+# Final Conclusion
+
+This vulnerability assessment confirms that the target system contains multiple critical security flaws that make it highly vulnerable to attack. The combination of outdated software, weak TLS configurations, exposed ports, and high-risk vulnerabilities poses a significant threat to confidentiality, integrity, and system availability.
+
+The findings strongly indicate that this machine is likely a practice environment (e.g., Metasploitable or DVWA lab), but the vulnerabilities identified mirror real-world risks found in poorly secured production systems.
+
+To secure the system, immediate remediation actions are required, including disabling insecure services, patching outdated components, and enforcing strong cryptographic configurations.
+
+This concludes the final vulnerability report.
+
+
+
+
+
+#Connect with Me : 
+## 🔗 Connect With Me  
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue?logo=linkedin&style=for-the-badge)](https://www.linkedin.com/in/jitusah/)
