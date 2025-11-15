@@ -42,6 +42,18 @@ Why? → Safe practice environment where you can test without harming real syste
 To replicate this project, you need a safe lab environment.  
 We use **Kali Linux** (attacker machine) and **Metasploitable2/DVWA** (target machine).
 
+Kali Linux is a hacking toolset, Metasploitable2 is a vulnerable target, and VMware is the virtual lab where you run them. Together, they form a powerful ethical hacking practice environment.
+
+# How They Work Together
+
+- You install VMware on your laptop.
+- Inside VMware, you run Kali Linux as your attacker machine.
+- You also run Metasploitable2 as your vulnerable target.
+- Then, you use tools like Nmap or Metasploit from Kali to find and exploit weaknesses in Metasploitable2.
+This setup is perfect for learning ethical hacking, OSINT, and penetration testing in a legal, controlled environment.
+
+
+
 ### Download For Windows
 
 1.VirtualBox : Download From Oracle Site 
@@ -79,6 +91,17 @@ Install VirtualBox or VMware Workstation/Player on your host machine (Windows, L
 
 ># kali Linux :
 
+
+>***Kali Linux – The Attacker Machine***
+- What it is: A Debian-based Linux distribution designed for penetration testing and ethical hacking.
+- Purpose: Comes preloaded with 600+ tools like Nmap, Burp Suite, Metasploit, Wireshark, etc.
+- Use case: You use Kali to scan, exploit, and analyze other systems.
+- Who uses it: Ethical hackers, red teamers, cybersecurity students, and professionals.
+- Runs on: Can be installed directly or run inside a virtual machine like VMware or VirtualBox.
+
+
+
+
 <img width="2872" height="1772" alt="Screenshot 2025-11-15 103153" src="https://github.com/user-attachments/assets/837762a7-c028-41b4-89b7-977759cda358" />
 
 
@@ -94,6 +117,15 @@ Install VirtualBox or VMware Workstation/Player on your host machine (Windows, L
 
 
 ># Metasploitable2 :
+
+- What it is: A deliberately insecure Linux virtual machine created by Rapid7.
+- Purpose: Acts as a practice target for penetration testing tools like Metasploit.
+- Use case: You attack Metasploitable2 from Kali to learn how real-world vulnerabilities work.
+- Contains: Vulnerable services like FTP, SSH, MySQL, Tomcat, and more.
+- Runs on: Must be run inside a virtual machine (like VMware or VirtualBox).
+
+
+
 
 <img width="2879" height="1785" alt="Screenshot 2025-11-15 102956" src="https://github.com/user-attachments/assets/18b6c0e7-97a3-42d7-83fe-ed86bac7fa93" />
 
